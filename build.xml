@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build" name="CS680_HW4">
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	<path id="JUnit 4.libraryclasspath">
+		<pathelement location="${env.HOMEPATH}/.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar" />
+		<pathelement location="${env.HOMEPATH}/.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar" />
+	</path>
+	<path id="CS680_HW4.classpath">
+		<pathelement location="bin" />
+		<pathelement location="test/bin" />
+		<path refid="JUnit 4.libraryclasspath" />
+	</path>
+	<target name="init">
+		<mkdir dir="bin" />
+		<copy includeemptydirs="false" todir="bin">
+			<fileset dir="src/edu/umb/cs/cs680/unittest">
+				<exclude name="**/*.launch" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<mkdir dir="test/bin" />
+		<copy includeemptydirs="false" todir="test/bin">
+			<fileset dir="test/src/edu/umb/cs/cs680/unittest">
+				<exclude name="**/*.launch" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="clean">
+		<delete dir="bin" />
+		<delete dir="test/bin" />
+	</target>
+	<target depends="init" name="build">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+			<src path="src/edu/umb/cs/cs680/unittest" />
+			<classpath refid="CS680_HW4.classpath" />
+		</javac>
+		<javac debug="true" debuglevel="${debuglevel}" destdir="test/bin" includeantruntime="false" source="${source}" target="${target}">
+			<src path="test/src/edu/umb/cs/cs680/unittest" />
+			<classpath refid="CS680_HW4.classpath" />
+		</javac>
+	</target>
+	<target name="CalculatorTest" depends="build">
+		<junit fork="yes" printsummary="withOutAndErr">
+			<formatter type="plain" usefile="false" />
+			<test name="edu.umb.cs.cs680.unittest.CalculatorTest" />
+			<jvmarg line="-ea" />
+			<classpath refid="CS680_HW4.classpath" />
+		</junit>
+	</target>
+</project>
