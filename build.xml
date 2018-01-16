@@ -8,6 +8,7 @@
 		<pathelement location="${env.HOMEPATH}/.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar" />
 		<pathelement location="${env.HOMEPATH}/.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar" />
 	</path>
+	
 	<path id="CS680_HW4.classpath">
 		<pathelement location="bin" />
 		<pathelement location="test/bin" />

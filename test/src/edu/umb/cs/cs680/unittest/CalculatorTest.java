@@ -1,7 +1,7 @@
 package edu.umb.cs.cs680.unittest;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+ import static org.hamcrest.CoreMatchers.*;
+ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
